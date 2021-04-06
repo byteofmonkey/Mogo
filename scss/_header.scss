@@ -1,0 +1,347 @@
+/////////////__________________________________________________HAMBURGER BUTTON
+.header__hamburger {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: none;
+
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 6rem;
+  padding: 3rem;
+  margin-top: 1rem;
+
+  &:focus {
+    outline-color: $c-yellow;
+  }
+
+  div {
+    width: 4rem;
+    height: 0.5rem;
+    background: #fff;
+    border-radius: 0.25rem;
+    transition: transform .5s ease-in-out, background-color .5s ease-in-out;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 4rem;
+      height: 0.5rem;
+      background: #fff;
+      border-radius: 0.25rem;
+      pointer-events: none;
+      transition: transform .5s ease-in-out;
+    }
+
+    &::before {
+      transform: translateY(-1.2rem);
+    }
+
+    &::after {
+      transform: translateY(1.2rem);
+    }
+  }
+}
+
+.hamburger_open .header__hamburger div {
+  background-color: transparent;
+  transform: translateX(-5rem);
+  transition: transform .5s ease-in-out, background-color .5s ease-in-out;
+
+  &::before {
+    transform: rotate(45deg) translate(3.5rem, -3.5rem);
+  }
+
+  &::after {
+    transform: rotate(-45deg) translate(3.5rem, 3.5rem);
+  }
+}
+
+/////////////____________________________________________________________NAVBAR
+.header {
+  font-family: "Montserrat";
+  width: 100%;
+  position: absolute;
+  height: 12rem;
+
+  transition: height 0.3s linear, background-color 0.3s linear;
+
+  &__wrapper {
+    max-width: 130rem;
+    margin: 0 auto;
+    padding: 1.5rem 5rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    position: relative;
+    z-index: 2;
+
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    color: $c-white;
+    outline: none;
+
+    transition: color 0.3s linear 0.1s;
+
+    user-select: none;
+
+    svg {
+      position: absolute;
+      top: -0.5rem;
+      left: 2.5rem;
+      width: 3.8rem;
+      transform: scale(0);
+      cursor: pointer;
+      color: $c-yellow;
+      padding-bottom: 0.2rem;
+      border-bottom: 0.2rem solid $c-yellow;
+      transition: transform 0.1s linear;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 62.5rem;
+
+    a {
+      padding: 1.5rem;
+
+      color: $c-white;
+      font-size: 1.4rem;
+      font-weight: normal;
+      text-transform: uppercase;
+      text-decoration: none;
+      position: relative;
+
+      transition: all linear 0.2s;
+
+      user-select: none;
+
+      svg {
+        width: 2rem;
+        padding-top: 0.5rem;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: calc(100% - 3rem);
+        border-bottom: 0.2rem solid $c-yellow;
+        transform: scaleX(0);
+        transition: all linear 0.3s;
+
+        &:nth-child(6) {
+          width: 200%;
+        }
+      }
+
+      &:last-of-type {
+        padding-right: 0;
+
+        &::after {
+          width: calc(100% - 1rem);
+        }
+      }
+
+      &:nth-child(6)::after {
+        width: calc(100% - 2.5rem);
+      }
+
+      &:hover,
+      &:focus {
+        outline: none;
+        color: $c-yellow;
+        transform: translate3d(-0.3rem, -0.5rem, 0) scale(1.2);
+        text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.8);
+
+        svg {
+          filter: drop-shadow(0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5));
+        }
+
+        &::after {
+          transform: scaleX(1);
+          box-shadow: 0.4rem 0.4rem 0.8rem rgba(0, 0, 0, 0.4);
+        }
+      }
+    }
+  }
+
+  &__tab {
+    display: none;
+    z-index: -1;
+  }
+
+  /////////////__________________________________________________.HEADER-@MEDIA
+  @include tablet {
+    .header__nav {
+      width: 48rem;
+    }
+  }
+
+  @media (max-width: 991.98px) and (orientation: landscape),
+  (max-width: 767.98px) {
+
+    &__wrapper {
+      padding: 2.8rem 3rem;
+    }
+
+    &__hamburger {
+      display: flex;
+    }
+
+    .header__nav {
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      padding-top: 6rem;
+
+      height: 100vh;
+      width: 100%;
+      flex-direction: column;
+      justify-content: space-around;
+
+      background-color: $c-menu;
+
+      clip-path: circle(0 at 50% 50%);
+      -webkit-clip-path: circle(0 at 50% 50%);
+      transition: clip-path 0.2s linear;
+
+      a {
+        font-size: 2.4rem;
+        padding: 0;
+        opacity: 0;
+
+        &:last-of-type {
+          display: none;
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767.98px) and (orientation: portrait) {
+    .header__nav {
+      padding: 12rem;
+    }
+  }
+}
+
+/////////////________________________________________________________JS CLASSES
+.hamburger_open .header__nav {
+  clip-path: circle(90% at at 50% 50%);
+  -webkit-clip-path: circle(90% at 50% 50%);
+  transition: clip-path 0.2s linear;
+
+  a {
+    opacity: 1;
+    transition: opacity 0.01s ease-out calc(0.3s * var(--i));
+  }
+}
+
+.stickyNavBar {
+  z-index: 2;
+  top: 0;
+  background-color: $c-menu;
+  height: 8rem;
+  transition: height 0.2s ease-in-out, background-color 0.5s linear;
+
+  .header__logo:hover {
+    color: transparent;
+    transition: color 0.1s linear;
+
+    svg {
+      transform: scale(1);
+      transition: transform 0.2s linear 0.1s;
+    }
+  }
+
+  @media (max-width: 991.98px) and (orientation: landscape),
+  (max-width: 767.98px) {
+    transition: top 0.2s linear;
+    top: -7.5rem;
+
+    .header__tab {
+      position: absolute;
+      z-index: 0;
+
+      bottom: -1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 40%;
+
+      border: 0.2rem solid lighten($c-menu, 20%);
+
+      border-radius: 3rem;
+      background-color: $c-menu;
+
+      transition: bottom 0.2s linear;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      padding: 0 5% 0.3rem;
+      color: lighten($c-menu, 20%);
+
+      svg {
+        width: 1rem;
+      }
+    }
+  }
+
+  &.header_show {
+    top: 0rem;
+
+    .header__tab {
+      bottom: 0;
+    }
+  }
+}
+
+.header__logo_icon {
+
+  @media (max-width: 991.98px) and (orientation: landscape),
+  (max-width: 767.98px) {
+    position: absolute;
+    color: transparent;
+    cursor: pointer;
+    top: 2.6rem;
+    left: 1rem;
+    transition: none;
+
+    svg {
+      color: $c-yellow;
+      transform: scale(1);
+      z-index: 1;
+
+      padding-bottom: 0.5rem;
+      border-bottom: 0.2rem solid $c-yellow;
+    }
+  }
+}
+
+// DO NOT CHANGE - nesting for higher cpecificity; transform can't be inline
+.header .header__link_active::after {
+  transform: scaleX(1);
+}

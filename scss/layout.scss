@@ -1,0 +1,1880 @@
+@import "./_variables.scss";
+@import "./_header.scss";
+@import "./_intro.scss";
+@import "./_quote.scss";
+
+:root {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+//____________________BACKGROUND IMAGE SUPPORT WEBP
+:root.webp {
+  .intro {
+    background-image: linear-gradient(to top, #fce38aaa, #f38181aa), linear-gradient(to bottom, #fce38aaa, #fce38aaa), url(../img/background1.webp);
+  }
+
+  .design {
+    background-image: url(../img/background2.webp);
+  }
+
+  .clients {
+    background-image: url(../img/background3.webp);
+  }
+
+  .map {
+    background-image: url(../img/background4.webp);
+  }
+}
+
+//_________________BACKGROUND IMAGE NO SUPPORT WEBP
+:root.no-webp {
+  .intro {
+    background-image: linear-gradient(to top, #fce38aaa, #f38181aa), linear-gradient(to bottom, #fce38aaa, #fce38aaa), url(../img/background1.jpg);
+  }
+
+  .design {
+    background-image: url(../img/background2.jpg);
+  }
+
+  .clients {
+    background-image: url(../img/background3.jpg);
+  }
+
+  .map {
+    background-image: url(../img/background4.jpg);
+  }
+}
+
+
+//_______________________________WHOLE PAGE CLASSES
+body,
+h2,
+h3 {
+  // all text excluding paragraphs:
+  color: $c-title;
+  font-family: "Montserrat";
+}
+
+p {
+  //content fonts:
+  font-family: "Roboto";
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: $c-content;
+}
+
+.loading {
+  opacity: 0;
+}
+
+.fadeIn {
+  animation: fadein 0.2s;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.container {
+  max-width: 130rem;
+  margin: 0 auto;
+  padding: 0 5rem;
+
+  @include small {
+    padding: 0 2rem;
+  }
+}
+
+.heading {
+  max-width: 105.4rem;
+  margin: 0 auto;
+  padding: 0 5rem;
+
+  h2 {
+    font-family: "Kaushan Script";
+    font-weight: 500;
+    font-size: 2.4rem;
+    text-align: center;
+  }
+
+  &__sub-title {
+    margin-top: 0.4rem;
+    text-transform: uppercase;
+    font-size: 2.9rem;
+    font-weight: 700;
+    text-align: center;
+
+    &::after {
+      content: "";
+      display: block;
+      margin: 2.9rem auto 4.3rem;
+      width: 6rem;
+      border-bottom: 0.3rem solid $c-coral;
+    }
+  }
+
+  p {
+    max-width: 95.4rem;
+    font-family: Roboto;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  @include desktop {
+    padding: 0 3rem;
+
+    h2 {
+      font-size: 2.5vmax;
+    }
+
+    &__sub-title {
+      margin-top: 0;
+      font-size: 2.7vmax;
+
+      &::after {
+        margin: 1vmax auto 3vmax;
+      }
+    }
+  }
+
+  @include phone {
+    padding: 0 2rem;
+
+    &__sub-title::after {
+      margin: 1vmax auto 2vmax;
+    }
+
+    p {
+      text-align: justify;
+    }
+  }
+}
+
+.quote-background {
+  background-color: $c-grey;
+}
+
+//___________________END_________WHOLE PAGE CLASSES
+
+
+
+
+.story {
+
+  //____________________________________________STORY
+  .heading {
+    margin: 8.6rem auto 9.7rem;
+  }
+
+  .cards {
+    display: grid;
+    grid-template: 1fr / repeat(3, minmax(20rem, 38rem));
+    justify-content: center;
+    gap: 3rem;
+
+    &__background {
+      background-color: $c-green;
+      position: relative;
+      z-index: 1;
+      //z-index for hover(do not remove)
+
+      img {
+        object-fit: cover;
+        transition: transform 0.2s linear 0.1s;
+      }
+
+      &:hover img {
+        transform: translate3d(-1rem, -1rem, 0) scale(1.01);
+      }
+
+      &:hover .cards__title {
+        transform: translate3d(-1rem, -1rem, 0) scale(1.02);
+        opacity: 0.75;
+      }
+    }
+
+    &__title {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      z-index: 1;
+
+      text-transform: uppercase;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: $c-white;
+
+      opacity: 0;
+      background-image: linear-gradient(to top, #fce38a, #f38181);
+
+      transition: transform 0.2s linear 0.1s, opacity 0.2s linear 0.2s;
+
+      svg {
+        width: 3rem;
+      }
+    }
+  }
+
+  .metrics {
+    margin-top: 11rem;
+    height: 27rem;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(15rem, 24rem));
+    justify-content: center;
+
+    background-color: $c-green;
+
+    color: $c-white;
+
+    >div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      border-left: 0.1rem solid white;
+
+      &:last-child {
+        border-right: 0.1rem solid white;
+      }
+
+      &:hover,
+      &:focus {
+        box-shadow: 0 0 10px 1px white;
+        transform: translate(-0.3rem, -0.1rem) scale(1.02);
+      }
+    }
+
+    &__conuter {
+      margin-bottom: 1.5rem;
+
+      font-size: 7.2rem;
+      line-height: 1;
+      font-weight: bold;
+    }
+
+    &__definition {
+      margin-bottom: 0.7rem;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+    }
+  }
+
+  @include desktop {
+    .heading {
+      margin: 5rem auto;
+    }
+
+    .metrics {
+      margin-top: 8rem;
+      height: 22rem;
+
+      &__conuter {
+        margin-bottom: 1.5rem;
+        font-size: 6.5rem;
+      }
+
+      &__definition {
+        margin-bottom: 0.7rem;
+        font-size: 1.2rem;
+      }
+
+      >div {
+        &:first-child {
+          border-left: unset
+        }
+
+        &:last-child {
+          border-right: unset;
+        }
+      }
+    }
+  }
+
+  @include tablet {
+    .heading {
+      margin: 5rem auto 2rem;
+    }
+
+    &__wrapper {
+      display: grid;
+      grid-auto-flow: dense;
+      grid-template: 1fr / 2fr 5fr;
+    }
+
+    .cards {
+      justify-self: center;
+      grid-area: 1/2/5/-1;
+      margin: 0 2rem;
+      padding: 1.5rem 0;
+      gap: 2rem;
+      grid-template: repeat(3, auto) / 1fr;
+    }
+
+    .metrics {
+      margin-top: 0;
+      height: 100%;
+      grid-template: repeat(5, 1fr) / 1fr;
+      grid-area: 1/1/5/-1;
+
+      >div {
+        border-top: 0.1rem solid $c-white;
+        padding-left: 4rem;
+
+        &:nth-child(2) {
+          order: 1;
+        }
+
+        &:nth-child(3) {
+          order: -2;
+        }
+
+        &:last-child {
+          border-right: unset;
+          order: -1
+        }
+
+        &:hover,
+        &:focus {
+          transform: translate(0, -0.2rem) scale(1.04);
+          z-index: 1;
+        }
+      }
+
+      &__conuter {
+        width: 100%;
+        margin-bottom: 1.5rem;
+        font-size: 5.5rem;
+      }
+
+      &__definition {
+        width: 100%;
+        margin-bottom: 0.7rem;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  @include small {
+    &__wrapper {
+      display: grid;
+      grid-template: auto auto / 1fr;
+    }
+
+    .cards {
+      grid-area: unset;
+      padding-top: 0;
+    }
+
+    .metrics {
+      grid-area: unset;
+
+      >div {
+        padding: 1rem 5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        background-image: unset;
+      }
+
+      &__conuter,
+      &__definition {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.services {
+  //_________________________________________SERVICES
+  margin-bottom: 11.7rem;
+
+  .heading {
+    margin: 10.5rem auto 6.4rem;
+  }
+
+  &__tiles {
+    margin: 0 5rem;
+    display: grid;
+    grid-template: 1fr 9rem 1fr / repeat(3, minmax(30rem, 34rem));
+    grid-column-gap: 6rem;
+    justify-content: center;
+
+    span:first-of-type {
+      grid-area: 2 / 1 / 2 / -1;
+      border-bottom: 0.1rem solid $c-border;
+      align-self: center;
+    }
+
+    span:last-of-type {
+      display: none;
+    }
+  }
+
+  &__item {
+    padding-left: 6rem;
+    position: relative;
+
+    svg {
+      width: 3.2rem;
+      position: absolute;
+      left: 0;
+      top: 0.4rem;
+    }
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.4rem;
+  }
+
+  @include desktop {
+    margin-bottom: 5rem;
+
+    .heading {
+      margin: 5rem auto 2rem;
+    }
+
+    &__tiles {
+      grid-column-gap: 14rem;
+      grid-template: 1fr 5rem 1fr 5rem 1fr / repeat(2, minmax(30rem, 34rem));
+
+      span:last-of-type {
+        display: unset;
+        grid-area: 4 / 1 / 4 / -1;
+        border-bottom: 0.1rem solid $c-border;
+        align-self: center;
+      }
+    }
+  }
+
+  @include tablet {
+    &__tiles {
+      grid-column-gap: 4rem;
+    }
+  }
+
+  @include phone {
+    &__tiles {
+      margin: 0;
+      grid-template: repeat(6, 1fr) / auto;
+      grid-row-gap: 2rem;
+
+      span {
+        display: none;
+      }
+
+      span:last-of-type {
+        display: none;
+      }
+    }
+
+    &__item {
+      padding: 0 8rem 2rem 16rem;
+      border-bottom: 0.1rem solid $c-border;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+
+      svg {
+        width: 4rem;
+        left: 10rem;
+      }
+    }
+  }
+
+  @include small {
+    margin-bottom: 1rem;
+
+    &__tiles {
+      grid-row-gap: 1.5rem;
+    }
+
+    &__item {
+      padding: 0 2rem 1.5rem 6.5rem;
+
+      svg {
+        width: 3.2rem;
+        left: 2.5rem;
+      }
+    }
+  }
+}
+
+.design {
+  //___________________________________________DESIGN
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .heading {
+    padding-top: 10.6rem;
+
+    &__sub-title::after {
+      margin-bottom: 5rem;
+    }
+  }
+
+  div {
+    position: relative;
+
+    :first-child img {
+      margin: 0 auto;
+      transform: translateX(-5%);
+    }
+
+    :last-child img {
+      position: absolute;
+      bottom: -5.2rem;
+      left: 56.5%;
+    }
+  }
+
+  @include desktop {
+    .heading {
+      padding-top: 5vmax;
+    }
+
+    div {
+      :first-child img {
+        width: 40rem;
+      }
+
+      :last-child img {
+        width: 18rem;
+      }
+    }
+  }
+
+  @include tablet {
+    div {
+      :first-child img {
+        width: 33rem;
+      }
+
+      :last-child img {
+        width: 15rem;
+      }
+    }
+  }
+
+  @include small {
+    div {
+      :first-child img {
+        width: 24rem;
+      }
+
+      :last-child img {
+        width: 11.5rem;
+        left: 55%;
+      }
+    }
+  }
+}
+
+.what {
+  //_______________________________________WHAT WE DO
+  margin-bottom: 12rem;
+
+  .heading {
+    margin: 10.6rem auto 8.9rem;
+  }
+
+  &__columns {
+    padding: 0 5rem;
+    display: grid;
+    grid-template: 1fr / auto auto;
+    justify-content: center;
+    gap: 3rem;
+
+    picture {
+      min-width: 57rem;
+    }
+  }
+
+  .accordion {
+    max-width: 60rem;
+    height: 38rem;
+
+    >:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    &__item {
+      input {
+        display: none;
+
+        &:checked~.accordion__content {
+          height: 18rem;
+          padding: 2rem;
+          border: 0.1rem solid $c-border;
+          border-top: none;
+        }
+
+        &:checked~.accordion__header>:last-child {
+          transform: rotateZ(180deg);
+        }
+      }
+    }
+
+    &__header {
+      display: flex;
+      align-items: center;
+      height: 6rem;
+      cursor: pointer;
+      outline: none;
+
+      border: 0.1rem solid $c-border;
+
+      transition: border 0.3s linear, transform 0.3s linear, box-shadow 0.3s linear;
+
+      user-select: none;
+
+      &:hover,
+      &:focus {
+        transform: translate3d(-0.2rem, -0.3rem, 0) scaleX(1.01) scaleY(1.01);
+        border-bottom: 0.4rem solid rgba(0, 0, 0, 0.1);
+        border-right: 0.4rem solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0.4rem 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+        transition: border 0.1s linear, transform 0.1s linear, box-shadow 0.1s linear;
+      }
+
+      :first-child {
+        width: 3rem;
+        margin-left: 1.6rem;
+      }
+
+      :nth-child(2) {
+        text-transform: uppercase;
+        font-family: "Montserrat";
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: $c-title;
+        margin-left: 1.5rem;
+        margin-right: auto;
+      }
+
+      :last-child {
+        margin-right: 2rem;
+        width: 2.5rem;
+        height: 2.5rem;
+
+        transition: transform 0.2s linear 0.2s;
+      }
+
+    }
+
+    &__content {
+      height: 0;
+
+      overflow-y: scroll;
+
+      font-weight: 300;
+      font-style: italic;
+      text-rendering: optimizeLegibility;
+
+      transition: height 0.2s linear;
+
+      &::-webkit-scrollbar {
+        background-color: $c-white;
+        width: 1.5rem;
+      }
+
+      &::-webkit-scrollbar-track-piece {
+        background-color: $c-border;
+        border: 0.6rem solid $c-white;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 1rem;
+        background-color: $c-green;
+        box-shadow: inset 0 0 0.3rem 0.1rem #89c2b8;
+
+        &:hover {
+          box-shadow: inset 0.1rem 0.1rem 0.5rem #6d8a87;
+        }
+      }
+    }
+  }
+
+  @include desktop {
+    margin-bottom: 5rem;
+
+    .heading {
+      margin: 10rem auto 5rem;
+    }
+
+    &__columns {
+      grid-template: auto / 1fr 1fr;
+      padding: 0 3rem;
+
+      picture {
+        min-width: unset;
+
+        img {
+          height: 100%;
+        }
+      }
+
+      >:last-child {
+        max-width: 95.4rem;
+      }
+    }
+  }
+
+  @include tablet {
+    &__columns {
+      grid-template: auto auto / auto;
+      padding: 0 3rem;
+
+      img {
+        margin: 0 auto;
+        height: unset;
+      }
+    }
+  }
+
+  @include phone {
+    margin-bottom: 2rem;
+
+    .heading {
+      margin: 10rem auto 2rem;
+    }
+
+    &__columns {
+      padding: 0 2rem;
+      gap: 2rem;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  @include small {
+    .accordion {
+      &__header {
+        height: 5rem;
+
+        :first-child {
+          width: 2.5rem;
+          margin-left: 1.6rem;
+        }
+
+        :last-child {
+          font-size: 1.3rem;
+          margin-left: 1rem;
+        }
+
+        &::after {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+    }
+  }
+}
+
+.team {
+
+  //_____________________________________________TEAM
+  .heading {
+    margin: 9.5rem auto 8.8rem;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template: 1fr / repeat(3, minmax(20rem, 38rem));
+    justify-content: center;
+    grid-column-gap: 3rem;
+    padding: 0 5rem;
+  }
+
+  &__item {
+    text-align: center;
+  }
+
+  &__background {
+    background-color: $c-green;
+    position: relative;
+
+    img {
+      width: 38rem;
+      object-fit: cover;
+
+      transition: transform 0.3s linear 0.1s;
+    }
+
+    &:hover img {
+      transform: translate3d(-1rem, -1rem, 0) scale(1.015);
+    }
+
+    &:hover .team__links {
+      transform: translate3d(-1rem, -1rem, 0) scale(1.015);
+      opacity: 0.85;
+    }
+
+    &:hover a {
+      transform: translateY(0);
+      transition: transform 0.3s linear calc(0.1s * var(--i)), opacity 0.2s linear calc(0.12s * var(--i));
+      opacity: 1;
+    }
+  }
+
+  &__background_focused {
+
+    // JS class
+    img {
+      transform: translate3d(-1rem, -1rem, 0) scale(1.015);
+    }
+
+    .team__links {
+      transform: translate3d(-1rem, -1rem, 0) scale(1.015);
+      opacity: 0.85;
+
+      a {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+
+  &__links {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+
+    overflow: hidden;
+    opacity: 0;
+    background-image: linear-gradient(to top, #fce38a, #f38181);
+    transition: transform 0.3s linear 0.1s, opacity 0.2s linear 0.1s;
+
+    a {
+      width: 5.6rem;
+      height: 5.6rem;
+      padding: 1.3rem;
+      font-family: "fontAwesome";
+      color: $c-coral;
+      font-size: 3rem;
+      background-color: $c-yellow;
+      outline-color: $c-white;
+      outline-width: 0.3rem;
+      position: relative;
+      // position: relative for outline when focused(do not remove)
+
+      transform: translateY(20rem);
+      opacity: 0;
+
+      &:hover,
+      &:focus {
+        z-index: 1;
+        // z-index - for outline when focused(do not remove)
+        color: $c-white;
+        background-color: $c-coral;
+      }
+    }
+  }
+
+  &__title {
+    margin-top: 2.6rem;
+
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: $c-title;
+  }
+
+  &__sub-title {
+    margin-top: 0.5rem;
+
+    font-size: 1.5rem;
+    font-family: "Roboto";
+    text-rendering: optimizeLegibility;
+    font-weight: 300;
+    color: $c-content;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  @include desktop {
+    .heading {
+      margin: 5vmax auto 5vmax;
+    }
+  }
+
+  @include tablet {
+    .team__cards {
+      padding: 0 3rem;
+
+      .team__item {
+        .team__background {
+          .team__links a {
+            width: 5rem;
+            height: 5rem;
+            padding: 1rem;
+            font-size: 3rem;
+          }
+        }
+      }
+    }
+  }
+
+  @include phone {
+    &__cards {
+      grid-template: 1fr 1fr 1fr / 1fr;
+      grid-row-gap: 2rem;
+    }
+
+    &__item {
+      display: grid;
+      grid-template: 30% 30% 5% 30% 5% / 1fr 1fr;
+    }
+
+    &__background {
+      grid-area: 1/1/-1/1;
+    }
+
+    &__title,
+    &__sub-title {
+      grid-area: 2/1/2/-1;
+      text-align: right;
+      background-image: linear-gradient(90deg, #fff0 0%, #fffa 50%, $c-green 100%);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 2rem;
+    }
+
+    &__sub-title {
+      grid-area: 4/1/4/-1;
+    }
+  }
+
+  @include small {
+    &__cards {
+      justify-items: center;
+    }
+
+    &__item {
+      display: block;
+      grid-template: repeat(3, auto) / auto;
+    }
+
+    &__title,
+    &__sub-title {
+      display: block;
+      text-align: center;
+      background-image: unset;
+    }
+
+    &__title {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.achivements {
+  //______________________________________ACHIVEMENTS
+  margin-top: 11.3rem;
+  height: 25rem;
+  display: grid;
+  grid-template: 1fr / repeat(6, minmax(10rem, 11.5rem));
+  grid-gap: 9.5rem;
+  place-content: center;
+  place-items: center;
+  padding: 0 5rem;
+  user-select: none;
+
+  background-color: $c-grey;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+  }
+
+  @include desktop {
+    margin-top: 5vmax;
+    grid-gap: 5rem;
+    height: 22rem;
+  }
+
+  @include tablet {
+    padding: 0 3rem;
+    height: 18rem;
+    grid-gap: 3rem;
+  }
+
+  @include phone {
+    height: 20rem;
+    padding: 0 2rem;
+    grid-template: 12.5rem / repeat(5, 1fr);
+    grid-gap: 1rem;
+
+    :last-child {
+      display: none;
+    }
+  }
+
+  @include small {
+    height: 18rem;
+    padding: 0 1rem;
+  }
+}
+
+.work {
+  //_____________________________________________WORK
+  margin: 0 auto 6rem;
+  max-width: 192rem;
+
+  .heading {
+    margin: 10.6rem auto 10rem;
+  }
+
+  &__art {
+    display: grid;
+    grid-template: repeat(2, auto) / repeat(4, auto);
+    grid-auto-flow: column;
+    justify-content: center;
+
+    :nth-child(5) {
+      grid-row: 1 / span 2;
+    }
+  }
+
+  &__item {
+    position: relative;
+
+    div {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem;
+
+      font-family: "Montserrat";
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      color: $c-white;
+
+      opacity: 0;
+      background-image: linear-gradient(to top, #fce38a, #f38181);
+      transition: opacity 0.4s linear;
+
+      i {
+        margin-bottom: 2rem;
+        font-size: 3rem;
+      }
+
+      p {
+        margin-top: 1rem;
+        text-transform: none;
+        font-weight: 300;
+        font-style: italic;
+        color: inherit;
+      }
+    }
+
+    &:hover div,
+    &:focus div {
+      opacity: 0.85;
+    }
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @include desktop {
+    margin: 0 auto 5vmax;
+
+    .heading {
+      margin: 5vmax auto;
+    }
+  }
+
+  @include tablet {
+    &__art {
+      grid-template: repeat(4, auto) / repeat(2, 1fr);
+      grid-auto-flow: dense;
+    }
+  }
+
+  @include small {
+    &__art {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.clients {
+  //__________________________________________CLIENTS
+  margin-top: 9.7rem;
+  height: 83rem;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .heading {
+    padding-top: 10.5rem;
+  }
+
+  &__cards {
+    margin: 9.5rem 3rem 0;
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(2, 50rem);
+    grid-column-gap: 7rem;
+    grid-row-gap: 7rem;
+    justify-content: center;
+  }
+
+  &__item {
+    position: relative;
+    margin-left: 14rem;
+
+    font-family: "Roboto";
+    font-size: 1.5rem;
+
+    h3 {
+      font-family: "Montserrat";
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: $c-title;
+      text-transform: uppercase;
+    }
+
+    >:nth-child(3) {
+      margin-top: 0.3rem;
+      font-style: italic;
+      font-weight: 300;
+      color: $c-title;
+      text-rendering: optimizeLegibility;
+
+      &::after {
+        content: "";
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+        display: block;
+        width: 6rem;
+        border-bottom: 0.3rem solid $c-coral;
+      }
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    top: -0.5rem;
+    left: -13.5rem;
+    width: 11rem;
+    height: 11rem;
+    border-radius: 50%;
+  }
+
+  @include desktop {
+    margin-top: 5vmax;
+    height: auto;
+    padding-bottom: 5vmax;
+
+    .heading {
+      padding-top: 5vmax;
+    }
+
+    &__cards {
+      margin-top: 5vmax;
+      grid-column-gap: 4rem;
+      grid-template: repeat(2, 1fr) / repeat(2, 45rem);
+    }
+
+    &__item {
+      margin-left: 12rem;
+    }
+
+    &__avatar {
+      top: -0.5rem;
+      left: -11rem;
+      width: 9rem;
+      height: 9rem;
+      border-radius: 50%;
+    }
+  }
+
+  @include tablet {
+    &__cards {
+      grid-template: repeat(4, 1fr) / minmax(45rem, 80rem);
+      grid-row-gap: 2rem;
+    }
+
+    &__item {
+      margin-left: 0;
+      display: grid;
+      grid-template: 2rem 1fr 4rem / 11rem 1fr;
+
+      >:nth-child(3) {
+        &::before {
+          margin: 0 2rem 0 0;
+          content: "";
+          display: inline-block;
+          vertical-align: middle;
+          width: 6rem;
+          border-bottom: 0.3rem solid $c-coral;
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    &__avatar {
+      position: unset;
+      grid-area: 1/1/-1/1;
+    }
+
+    &__content {
+      grid-row-start: 2;
+    }
+  }
+
+  @include small {
+    &__cards {
+      grid-template: repeat(4, 1fr) / minmax(20rem, 50rem);
+    }
+
+    &__item {
+      grid-template: 3rem 4rem 1fr / 8rem 1fr;
+
+      h3 {
+        align-self: end;
+      }
+
+      >:nth-child(3)::before {
+        display: none;
+      }
+    }
+
+    &__avatar {
+      width: 6rem;
+      height: 6rem;
+      grid-area: 1/1/span 2/1;
+    }
+
+    &__content {
+      grid-area: 3/1/-1/span 2;
+    }
+  }
+}
+
+.blog {
+
+  //_____________________________________________BLOG
+  .heading {
+    margin-top: 10.6rem;
+    margin-bottom: 4.8rem;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr;
+    grid-gap: 3rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+
+    >:first-child {
+      position: relative;
+
+      img {
+        object-fit: cover;
+      }
+
+      >div {
+        height: 7rem;
+        width: 6rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        position: absolute;
+        left: -1rem;
+        bottom: 1rem;
+
+        color: $c-white;
+        background-color: $c-green;
+
+        font-size: 3rem;
+        font-weight: bold;
+        line-height: 1;
+
+        div {
+          font-family: "Roboto";
+          font-size: 1.5rem;
+          font-weight: 300;
+          font-style: italic;
+        }
+      }
+    }
+
+    h3 {
+      margin-top: 1.4rem;
+
+      font-family: "Montserrat";
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: $c-title;
+    }
+  }
+
+  &__content {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    flex-grow: 1;
+  }
+
+  &__stats {
+    font-size: 1.5rem;
+    font-family: "Roboto";
+    text-rendering: optimizeLegibility;
+    font-weight: 300;
+    font-style: italic;
+    color: $c-content;
+
+    &::before {
+      margin: 1.4rem 0 1.9rem;
+      content: "";
+      display: block;
+      width: 100%;
+      border-bottom: 0.1rem solid $c-border;
+    }
+
+    :first-child {
+      margin-right: 0.8rem;
+    }
+
+    :first-child::before {
+      content: url(../img/svg/views.svg);
+      margin-right: 0.5rem;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1.2;
+      width: 1.8rem;
+    }
+
+    :last-child::before {
+      content: url(../img/svg/coments.svg);
+      margin-right: 0.5rem;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1.2;
+      width: 1.6rem;
+    }
+  }
+
+  @include desktop {
+    .heading {
+      margin-top: 5vmax;
+      margin-bottom: 5vmax;
+    }
+  }
+
+  @include tablet {
+    &__cards {
+      grid-template: 1fr 1fr 1fr / 1fr;
+      justify-content: center;
+    }
+
+    &__item {
+      display: grid;
+      grid-template: 20% auto 1fr / auto 1fr;
+      justify-content: center;
+      grid-column-gap: 3rem;
+
+      >:first-child {
+        grid-area: 1 / 1 / span 3 / 1;
+      }
+    }
+
+    &__stats {
+      align-self: end;
+    }
+  }
+
+  @include phone {
+    &__cards {
+      max-width: 55rem;
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .blog__stats {
+      align-self: stretch;
+    }
+  }
+}
+
+.map {
+  //______________________________________________MAP
+  position: relative;
+  height: 20rem;
+  margin-top: 11.2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+
+  a {
+    position: absolute;
+
+    text-transform: uppercase;
+    font-family: "Montserrat";
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 1.2;
+    color: $c-coral;
+    outline-color: $c-yellow;
+
+    svg {
+      margin: 0 auto 1rem;
+      display: block;
+      width: 2.5rem;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      margin: 1.5rem auto 0;
+      width: 6rem;
+      border-bottom: 0.3rem solid $c-coral;
+    }
+
+    transition: filter 0.2s linear;
+
+    &:hover,
+    &:focus {
+      filter: drop-shadow(0 0 0.2rem $c-menu);
+    }
+  }
+
+  .map__link_hidden {
+    //JS class
+    transform: scale(0);
+    transition: transform 0.4s cubic-bezier(.43, -0.97, .83, .67);
+
+  }
+
+  @include desktop {
+    margin-top: 5vmax;
+    height: 16vmax;
+
+    a {
+      font-size: 3vmax;
+
+      &::before {
+        margin-bottom: 0;
+        width: 2vmax;
+      }
+
+      &::after {
+        margin-top: 1.5vmax;
+      }
+    }
+  }
+}
+
+.footer {
+  //___________________________________________FOOTER
+  padding: 6rem 5rem 13rem;
+  display: flex;
+  justify-content: center;
+
+  background-color: $c-grey;
+
+  .subscribe {
+    margin-right: 4.9rem;
+    flex-basis: 46.2rem;
+    display: flex;
+    flex-direction: column;
+
+    &__logo {
+      font-size: 4.6rem;
+      font-weight: bold;
+      color: $c-footer;
+    }
+
+    &__content {
+      margin-top: 2rem;
+      flex-grow: 1;
+    }
+
+    &__followers {
+      font-size: 1.4rem;
+
+      span {
+        margin-right: 0.5rem;
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        margin: 1.4rem 0;
+        border-bottom: 0.1rem solid $c-border;
+      }
+    }
+
+    &__socials {
+      font-family: "Roboto";
+      text-rendering: optimizeLegibility;
+      font-size: 1.5rem;
+      font-weight: 300;
+      font-style: italic;
+      color: $c-content;
+
+      :first-child {
+        margin-left: 1.6rem;
+      }
+
+      a {
+        padding-right: 0.6rem;
+        margin-right: 0.6rem;
+
+        font-size: 1.8rem;
+        color: $c-green;
+
+        transition: transform 0.1s linear, text-shadow 0.1s linear;
+
+        &:hover,
+        &:focus {
+          transform: scale(1.6);
+          text-shadow: 0.1rem 0.1rem 0.1rem $c-coral, 0.2rem 0.2rem 0.2rem $c-title, 0.4rem 0.4rem 0.9rem $c-border;
+          outline-color: $c-yellow;
+          outline-offset: 0.2rem;
+          outline-width: 0.3rem;
+          background-color: $c-grey;
+        }
+      }
+    }
+
+    &__mail {
+      margin-top: 3.5rem;
+
+      input {
+        padding: 1.3rem;
+        width: 23rem;
+        height: 4rem;
+
+
+
+        font-family: "Roboto";
+        font-size: 1.5rem;
+        font-weight: 300;
+        font-style: italic;
+        color: $c-footer;
+        border: 0.1rem solid $c-border;
+        background-color: $c-white;
+
+        &::placeholder {
+          color: $c-footer;
+        }
+
+        &:hover,
+        &:focus {
+          box-shadow: inset 0.4rem 0.4rem 1rem $c-border;
+          border-color: $c-green;
+          outline-color: $c-yellow;
+        }
+      }
+
+      button {
+        transform: translate3d(-0.3rem, -0.1rem, 0);
+        width: 15rem;
+        height: 4rem;
+        border: none;
+        cursor: pointer;
+        user-select: none;
+
+        &:focus,
+        &:hover {
+          outline-color: $c-yellow;
+          color: $c-yellow;
+        }
+
+        font-family: "Montserrat";
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: $c-white;
+        background-color: $c-green;
+      }
+    }
+  }
+
+  .blogs {
+    flex-basis: 35rem;
+    margin-right: 7rem;
+
+    h3 {
+      margin-top: 1.8rem;
+      margin-bottom: 3.5rem;
+      text-transform: uppercase;
+      font-size: 1.4rem;
+    }
+
+    &__articles {
+      display: grid;
+      flex-direction: column;
+
+      >:not(:last-child) {
+        margin-bottom: 3.9rem;
+      }
+
+      >div {
+        display: grid;
+        grid-template: repeat(2, auto) / 12rem auto;
+        grid-column-gap: 2rem;
+
+        img {
+          grid-area: 1/1/-1/1;
+          object-fit: cover;
+        }
+      }
+    }
+
+    &__content {
+      font-family: "Montserrat";
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: $c-title;
+    }
+
+    &__date {
+      font-family: "Roboto";
+      text-rendering: optimizeLegibility;
+      font-size: 1.3rem;
+      font-weight: 300;
+      font-style: italic;
+      color: $c-content;
+    }
+  }
+
+  .instagram {
+    flex-basis: 26.8rem;
+
+    h3 {
+      margin-top: 1.7rem;
+      margin-bottom: 3.5rem;
+
+      text-transform: uppercase;
+      font-size: 1.4rem;
+    }
+
+    div {
+      display: grid;
+      grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+      grid-gap: 0.2rem;
+
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 1.5rem;
+      user-select: none;
+
+      font-family: "Roboto";
+      text-rendering: optimizeLegibility;
+      font-size: 1.3rem;
+      font-weight: 300;
+      font-style: italic;
+      color: $c-title;
+
+      transition: transform 0.1s linear;
+
+      &:hover,
+      &:focus {
+        outline-color: $c-yellow;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  @include desktop {
+    flex-wrap: wrap;
+
+    .subscribe {
+      flex-basis: 85rem;
+      margin-right: 0;
+
+      &__followers {
+        margin-top: 2rem;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        margin: 1.4rem 0;
+        border-bottom: 0.1rem solid $c-border;
+      }
+    }
+
+    .blogs {
+      margin-right: 5rem;
+      flex-basis: 40rem;
+
+      &__articles>:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .instagram {
+      flex-basis: 40rem;
+
+      div {
+        grid-template: repeat(2, 1fr) / repeat(4, 1fr);
+
+        :last-child {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @include tablet {
+    padding: 3vmax 4vmax 6vmax;
+    justify-content: space-between;
+
+    .subscribe {
+      flex-basis: 100%;
+    }
+
+    .blogs {
+      flex-basis: 50%;
+      margin-right: 2rem;
+    }
+
+    .instagram {
+      flex-basis: 30rem;
+
+      div {
+        grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+      }
+
+      :nth-child(7),
+      :nth-child(8) {
+        display: none;
+      }
+    }
+  }
+
+  @include phone {
+    .subscribe {
+      &__mail {
+        margin-top: 2rem;
+
+        input {
+          width: 100%;
+        }
+
+        button {
+          transform: none;
+          margin-top: 1rem;
+          width: 100%;
+        }
+      }
+    }
+
+    .blogs {
+      flex-basis: 60%;
+
+      &__articles>div img {
+        width: 9rem;
+        height: 6rem;
+      }
+    }
+
+    .instagram {
+      flex-basis: 18rem;
+
+      div {
+        grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+      }
+    }
+  }
+
+  @include small {
+    .blogs {
+      flex-basis: 100%;
+      margin-right: 0;
+
+      &__articles>div {
+        grid-template: repeat(2, auto) / 7.5rem auto;
+
+        img {
+          width: 7.5rem;
+          height: 4.5rem;
+        }
+      }
+
+      &__content {
+        font-size: 1.1rem;
+      }
+    }
+
+    .instagram {
+      margin-top: 2rem;
+      flex-basis: 100%;
+
+      div {
+        justify-content: center;
+        grid-template: 1fr / repeat(3, 1fr);
+      }
+    }
+  }
+}

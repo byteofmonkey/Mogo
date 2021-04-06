@@ -1,0 +1,105 @@
+/////////////____________________________COLORS
+$c-white: #ffffff;
+$c-title: #333333;
+$c-content: #999999;
+$c-coral: #f38181;
+$c-green: #95e1d3;
+$c-yellow: #fce38a;
+$c-border: #e5e5e5;
+$c-grey: #f8f8f8;
+$c-footer: #cccccc;
+$c-menu: #464655;
+
+/////////////________________________BREAKPOINTS
+
+//desktop: 992px to 1200px
+@mixin desktop() {
+  @media (max-width: 1199.98px) {
+    @content;
+  }
+}
+
+// tablet 768px to 992px
+@mixin tablet() {
+  @media (max-width: 991.98px) {
+    @content;
+  }
+}
+
+// medium 576px to 768px
+@mixin phone() {
+  @media (max-width: 767.98px) {
+    @content;
+  }
+}
+
+// Small less than 576px
+@mixin small() {
+  @media (max-width: 575.98px) {
+    @content;
+  }
+}
+
+/////////////______________________________RESET
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+blockquote {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+picture {
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
