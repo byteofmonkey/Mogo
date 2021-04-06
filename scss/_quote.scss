@@ -1,0 +1,244 @@
+.quote {
+  margin: 0 auto;
+  max-width: 120rem;
+  padding: 3rem;
+  user-select: none;
+
+  &__icon {
+    grid-row: 1 / -1;
+    width: 15rem;
+    height: 15rem;
+    padding: 3rem;
+    object-fit: contain;
+
+    border: 0.3rem solid $c-green;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    width: 100%;
+  }
+
+  &__content {
+    margin-right: 1rem;
+
+    p {
+      font-size: 2.4rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: $c-content;
+    }
+  }
+
+  &__author {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
+    font-family: "Kaushan Script";
+    font-size: 2.4rem;
+    color: $c-title;
+
+    &::before {
+      margin-right: 1rem;
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      width: 6rem;
+      border-bottom: 0.3rem solid $c-coral;
+    }
+  }
+
+  @include desktop {
+    padding-bottom: 1rem;
+  }
+
+  @include small {
+    padding: 2rem 0;
+  }
+
+  .swiper-slide {
+    display: grid;
+    padding: 0 8rem;
+    justify-content: center;
+    grid-template: auto auto / 15rem minmax(50rem, 77rem);
+    grid-column-gap: 6rem;
+
+    @include desktop {
+      grid-column-gap: 4rem;
+      grid-template-columns: 12rem minmax(35rem, 90rem);
+
+      .quote__icon,
+      .quote__avatar {
+        width: 12rem;
+        height: 12rem;
+      }
+
+      .quote__icon {
+        padding: 1.8rem;
+      }
+
+      .quote__content p {
+        font-size: 2rem;
+      }
+    }
+
+    @include tablet {
+      padding: 0 6rem;
+      grid-column-gap: 3rem;
+      grid-template-columns: 9rem minmax(35rem, 90rem);
+
+      .quote__icon {
+        align-self: center;
+        padding: 1.5rem;
+        width: 9rem;
+        height: 9rem;
+      }
+
+      .quote__avatar {
+        width: 9rem;
+        height: 9rem;
+      }
+
+      .quote__content p {
+        font-size: 1.7rem;
+      }
+    }
+
+    @include phone {
+      padding: 0 6rem;
+      grid-column-gap: 3rem;
+      grid-template: auto auto auto / 1fr;
+
+      .quote__icon {
+        grid-row: unset;
+        justify-self: center;
+        padding: 1rem;
+        width: 7rem;
+        height: 7rem;
+      }
+
+      .quote__avatar {
+        justify-self: center;
+      }
+
+      .quote__content {
+        margin-top: 1rem;
+        text-align: center;
+
+        p {
+          text-align: center;
+          font-size: 1.7rem;
+        }
+      }
+
+      .quote__author {
+        font-size: 2rem;
+
+        &::before {
+          width: 5rem;
+        }
+      }
+    }
+
+    @include small {
+      padding: 0 3rem;
+
+      .quote__content p {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+.swiper-container {
+  width: 100%;
+  transition: opacity .6s ease;
+
+  &.swiper-container-coverflow {
+    padding-bottom: 1.5rem;
+
+    @include desktop {
+      padding-bottom: 3rem;
+    }
+  }
+
+  &.loading {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-repeat: no-repeat;
+  background-position: center;
+  outline: none;
+  transition: transform 0.1s linear, filter 0.1s linear;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.5);
+    filter: drop-shadow(0 0 0.2rem $c-title);
+  }
+
+  @include phone {
+    width: 1.5rem;
+
+  }
+}
+
+.swiper-button-prev {
+  background-image: url(../img/svg/chevron-left.svg);
+}
+
+.swiper-button-next {
+  background-image: url(../img/svg/chevron-right.svg);
+}
+
+.swiper-pagination {
+  transform: translateY(1rem);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.quote:hover,
+.quote:focus {
+  .swiper-pagination {
+    visibility: visible;
+    opacity: 0.5;
+    transition: opacity 1s linear;
+
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+
+    .swiper-pagination-bullet {
+      display: block;
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: $c-footer;
+      opacity: 0.5;
+      background-clip: content-box;
+      padding: 0.3rem;
+      border: 0.2rem solid $c-footer;
+
+      &:hover,
+      &:focus,
+      &.swiper-pagination-bullet-active {
+        opacity: 1;
+        border-color: $c-content;
+        background-color: $c-content;
+      }
+    }
+
+    @include phone {
+      gap: 1.5rem;
+
+      .swiper-pagination-bullet {
+        width: 2rem;
+        height: 2rem;
+        padding: 0.2rem;
+      }
+    }
+  }
+}

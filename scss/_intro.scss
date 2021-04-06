@@ -1,0 +1,260 @@
+.intro {
+  height: 100vh;
+  max-height: 145rem;
+  min-height: 75rem;
+
+  color: $c-white;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  &__wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__center-block {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      font-family: "Kaushan Script";
+      font-size: 7.2rem;
+      font-weight: normal;
+    }
+
+    div {
+      margin-top: 3.5rem;
+      font-size: 15rem;
+      font-weight: 700;
+      line-height: 0.7;
+      letter-spacing: -0.3rem;
+      text-transform: uppercase;
+    }
+
+    :nth-child(3)::after {
+      content: '';
+      display: block;
+      width: 6.2rem;
+      margin: 7.7rem auto 5rem;
+
+      border-bottom: 0.3rem solid;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16rem;
+      height: 4rem;
+      user-select: none;
+
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: inherit;
+
+      border: solid 0.3rem;
+      outline: none;
+
+      transition: all 0.2s linear;
+
+      &:hover,
+      &:focus {
+        border-radius: 0.2rem;
+        border: none;
+        outline: 0.4rem solid #fce38a70;
+        background-color: #fce38a70;
+        color: #7e713d;
+        color: $c-yellow;
+        text-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.9);
+        box-shadow: inset -0.2rem -0.2rem 0.6rem rgba(0, 0, 0, 0.2),
+          0.4rem 0.4rem 0.8rem rgba(0, 0, 0, 0.15);
+        transform: translate3d(-0.5rem, -0.3rem, 0) scale(1.002);
+      }
+    }
+  }
+
+  nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 3rem;
+    align-items: end;
+
+    padding-bottom: 1.8rem;
+
+    a {
+      padding-top: 1.4rem;
+      text-transform: uppercase;
+      font-size: 1.7rem;
+      color: $c-white;
+
+      border-top: 0.3rem solid;
+      outline: none;
+
+      counter-increment: nav-links;
+
+      transition: all 0.2s linear;
+
+      user-select: none;
+
+      &::before {
+        content: "0"counter(nav-links);
+        padding-right: 0.5rem;
+
+        font-size: 2.4rem;
+        font-weight: bold;
+      }
+
+      &:hover,
+      &:focus {
+        border-radius: 0.2rem;
+        border: none;
+        outline: 0.4rem solid #fce38a70;
+        background-color: #fce38a70;
+        color: $c-yellow;
+        text-shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.7);
+        box-shadow: inset -0.2rem -0.2rem 0.6rem rgba(0, 0, 0, 0.2),
+          0.6rem 0.6rem 1.5rem 0.8rem rgba(0, 0, 0, 0.1);
+        transform: translate3d(-0.5rem, -0.3rem, 0) scale(1.002);
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    .intro__link_active {
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: -0.3rem;
+        width: 7rem;
+        display: block;
+        border-top: 0.3rem solid $c-coral;
+      }
+    }
+  }
+
+  @include desktop {
+    min-height: 62rem;
+
+    &__center-block {
+      h1 {
+        font-size: 7vw;
+      }
+
+      div {
+        font-size: 14vw;
+        margin-top: 1.6vmax;
+      }
+
+      :nth-child(3)::after {
+        margin: 5rem auto 4rem;
+      }
+
+      a {
+        width: 20rem;
+        height: 5rem;
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  @media (max-width: 1199.98px) and (orientation:landscape) {
+    &__center-block {
+      h1 {
+        font-size: 6vw;
+      }
+
+      div {
+        font-size: 11vw;
+      }
+
+      :nth-child(3)::after {
+        border-width: 0.2rem;
+      }
+
+      a {
+        width: 20rem;
+        height: 5rem;
+        font-size: 1.6rem;
+        border-width: 0.2rem;
+      }
+    }
+  }
+
+  @media (max-width: 991.98px) and (orientation:landscape) {
+    min-height: 35rem;
+
+    &__center-block {
+      h1 {
+        font-size: 4vw;
+      }
+
+      div {
+        font-size: 7vw;
+      }
+
+      :nth-child(3)::after {
+        margin: 3rem auto 2.5rem;
+      }
+
+      a {
+        width: 18rem;
+      }
+    }
+
+    nav {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767.98px) and (orientation:portrait) {
+    &__center-block {
+      h1 {
+        font-size: 10vw;
+        border: 5px soid red;
+      }
+
+      div {
+        font-size: 15vw;
+      }
+    }
+
+    nav {
+      display: none;
+    }
+  }
+
+  @media (max-width: 575.98px) and (orientation:landscape) {
+    min-height: 28rem;
+
+    &__center-block {
+      h1 {
+        font-size: 6vw;
+      }
+
+      div {
+        font-size: 10vw;
+      }
+
+      :nth-child(3)::after {
+        margin: 2rem auto 2rem;
+      }
+
+      a {
+        width: 16rem;
+        height: 4rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
